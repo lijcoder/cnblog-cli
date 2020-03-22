@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  * @author LiJie
@@ -27,5 +28,12 @@ public class BlogFileTest {
         contentList.set(0, firstUpdate.toString());
         Path path = Files.write(Paths.get(filePath), contentList);
         Assert.assertNotNull(contentList);
+    }
+
+    @Test
+    public void image() throws IOException {
+        String file = "C:\\Users\\admin\\Desktop\\taiji.png";
+        String target = "C:\\Users\\admin\\Desktop\\taiji_target.png";
+        Thumbnails.of(file).scale(0.3).outputQuality(0.2f).toFile(target);
     }
 }

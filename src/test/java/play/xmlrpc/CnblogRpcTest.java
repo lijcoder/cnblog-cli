@@ -21,11 +21,6 @@ public class CnblogRpcTest {
 
     private static final User USER = new User();
 
-    static {
-        USER.setUsername("");
-        USER.setPassword("");
-    }
-
     @Test
     public void createBlog() {
         Blog blog = new Blog();
@@ -75,12 +70,12 @@ public class CnblogRpcTest {
 
     @Test
     public void uploadMedia() throws IOException {
-        String file = "C:\\Users\\admin\\Desktop\\taiji.jpg";
+        String file = "C:\\Users\\admin\\Desktop\\taiji.png";
         byte[] bs = Files.readAllBytes(Paths.get(file));
         Media media = new Media();
         media.setBits(bs);
-        media.setName("taiji.jpg");
-        media.setType("image/jpg");
+        media.setName("taiji.png");
+        media.setType("image/png");
         String url = XML_RPC.uploadMedia(media, USER);
         System.out.println(url);
         Assert.assertNotNull(url);
