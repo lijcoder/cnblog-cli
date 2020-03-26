@@ -31,7 +31,11 @@ public class CnblogCliImpl implements CnblogCli {
 
     @Override
     public String add(String filePath) {
-        String blogId = cnblogRpc.createBlog(getBlog(filePath), USER);
+        Blog blog = getBlog(filePath);
+        if (StringUtils.isNotBlank(blog.getPostid())) {
+            throw new RuntimeException("This blog already exists, please execute `update` command");
+        }
+        String blogId = cnblogRpc.createBlog(blog, USER);
         if (Objects.isNull(blogId)) {
             throw new RuntimeException("cnblog's blog create fail");
         }

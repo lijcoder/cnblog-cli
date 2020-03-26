@@ -11,7 +11,9 @@ mkdir -p ${ROOT_PATH}
 mkdir -p ${LIB_PATH}
 
 cp cnblog-cli.sh ${ROOT_PATH}
-cp cnblog-cli.config ${ROOT_PATH}
+if [ ! -f "${ROOT_PATH}/cnblog-cli.config" ]; then
+    cp cnblog-cli.config ${ROOT_PATH}
+fi
 cp target/*jar-with-dependencies.jar  ${LIB_PATH}/cnblog-cli.jar
 
 sed -i "s!\$install_cnblog_config!${ROOT_PATH}/cnblog-cli.config!g"  ${ROOT_PATH}/cnblog-cli.sh
